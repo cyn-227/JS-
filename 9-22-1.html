@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+
+<style type="text/css">
+    .hang {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+<head>
+    <title> new document </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            changeColor();
+            deleteTable();
+        }
+        //加载两个函数：1、改变背景颜色（鼠标移到不同行背景色值为#f2f2f2,移开时为原背景色#fff）2、点击删除按钮，删除当前行
+
+
+        function changeColor() {
+            var hang = document.getElementsByTagName("tr");  //获取所有行，是个数组
+            for (var i = 1; i < hang.length; i++) {                //i从1开始遍历，排除第一行标题的影响
+                hang[i].onmousemove = function () {               //（onmousemove事件会在鼠标指针移到指定的对象时发生）给每行添加鼠标监听事件
+                    this.classList.add("hang");              //css设置好的样式,当鼠标移到行上时，颜色改变为淡灰色
+                }
+                hang[i].onmouseout = function () {
+                    this.classList.remove("hang");                  //css设置好的样式，鼠标移走时，颜色变为原来的颜色
+                }
+            }
+        }
+        // 鼠标移动改变背景颜色的函数设置
+
+
+        function add() {
+            var message = prompt("请输入你的学号", "xh");           //prompt(text,defualtext).text-对话框中显示的纯文本;defualtext-默认的输入文本。  一个对话框，输入学号，默认输入值为空
+            var name = prompt("请输入你的名字");                    //输入姓名的对话框
+
+            var tab = document.getElementById("table");          //获取表格这个数组
+            var tr1 = document.createElement("tr");               //创建一个行
+            var td1 = document.createElement("td");               //新建列1
+            var td2 = document.createElement("td");               //新建列2
+            var td3 = document.createElement("td");               //新建列3
+            var tda = document.createElement("a");                //新建列3里面的a标签
+
+            tab.appendChild(tr1);                               //把行添加到表格
+            tr1.appendChild(td1);                               //把列1添加到行
+            tr1.appendChild(td2);                               //把列2添加到行
+            tr1.appendChild(td3);                               //把列3添加到行
+            td3.appendChild(tda);                               //把a标签添加到列3里
+
+            td1.innerHTML = message;                              //把对话框获取的学号给列1
+            td2.innerHTML = name;                                //把对话框获取的姓名给列2
+            tda.innerHTML = "删除";                              //a标签中添加（删除）内容
+            tda.href = "javascript:;";                           //
+
+            changeColor();                                    //新加一行同时调用修改背景颜色和删除按钮的函数
+            deleteTable();
+        }
+        //编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点的函数
+
+
+        function deleteTable() {
+            var del1 = document.getElementsByTagName("a");         //获取所有a标签
+            for (var i = 0; i < del1.length; i++) {
+                del1[i].onclick = function () {                     //每一个a标签添加点击事件
+                    this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);   //这个a标签的父标签（td）的父标签（tr）的父标签（table），（table）删除子对象（a的父亲的父亲tr）
+                }
+            }
+        }
+        //创建删除函数
+
+    </script>
+</head>
+
+<body>
+    <table border="1" width="50%" id="table">
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>操作</th>
+        </tr>
+
+        <tr>
+            <td>xh001</td>
+            <td>王小明</td>
+            <td><a href="javascript:;">删除</a></td>
+            <!--在删除按钮上添加点击事件  -->
+        </tr>
+
+        <tr>
+            <td>xh002</td>
+            <td>刘小芳</td>
+            <td><a href="javascript:;">删除</a></td>
+            <!--在删除按钮上添加点击事件  -->
+        </tr>
+    </table>
+    <input type="button" value="添加一行" onclick="add()" />
+    <!--在添加按钮上添加点击事件  -->
+</body>
+
+<script type="text/javascript">
+
+
+
+
+
+</script>
+
+
+</html>
