@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>浏览器对象</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gkb" />
+</head>
+
+<body>
+    <br />
+    <a href="#target1">第一个锚点</a>
+    <a name="target1"></a>
+    <br />
+    <!--先编写好网页布局-->
+    <h1>操作成功</h1>
+    <span id="djs">5</span>秒回到主页<a href="javascript:" onclick="window.history.back();">返回</a>
+    <script type="text/javascript">
+        var t = 5;
+        function cuttime() {
+            document.getElementById('djs').innerHTML = t;
+            t = t - 1;
+            setTimeout("cuttime()", 1000);
+            if (t == 0) {l
+                window.location.replace("https://www.imooc.com/");
+            }
+        }
+        cuttime();
+   //获取显示秒数的元素，通过定时器来更改秒数。
+   //通过window的location和history对象来控制网页的跳转。
+    </script>
+</body>
+
+</html>
