@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+
+<style type="text/css">
+    .hang {
+
+        background-color: #f2f2f2;
+
+
+    }
+</style>
+
+
+
+<head>
+
+    <title> new document </title>
+
+    <meta http-equiv="Content-Type" content="text/htmF. G. Mitri, J. F. Greenleaf, and M. Fatemi, “Comparison of continuouswave
+    (CW) and tone-burst (TB) excitation modes in vibro-acoustography:
+    Application for the non-destructive imaging of flaws,” Appl. Acoust.
+    70(2), 333–336 (2009).
+    8J. C. Brigham, W. Aquino, F. G. Mitri, J. F. Greenleaf, and M. Fatemi,
+    “Inverse estimation of viscoelastic material properties for solids immersed
+    in fluids using vibroacoustic techniques,” J. Appl. Phys. 101(2) (2007).
+    9F. G. Mitri, B. J. Davis, J. F. Greenleaf, and M. Fatemi, “In vitro comparative
+    study of vibro-acoustography versus pulse-echo ultrasound in imaging
+    permanent prostate brachytherapy seeds,” Ultrasonics 49(1), 31–38 (2009).
+    10C. Pislaru, B. Kantor, R. R. Kinnick, J. L. Anderson, M. C. Aubry, M. W.
+    Urban, M. Fatemi, and J. F. Greenleaf, “In vivo vibroacoustography of/-
+    large peripheral arteries,” Invest. Radiol. 43(4), 243–252 (2008).
+    11A. Alizad, D. H. Whaley, J. F. Greenleaf, and M. Fatemi, “Critical issues in
+    breast imaging by vibro-acoustography,” Ultrasonics 44, E217–E220 (2006).l; charset=UTF-8" />
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+
+            changecolor();
+
+            deleteTable();
+
+        }
+
+        //加载两个函数，分别是改变背景颜色的、给删除按钮加事件的
+
+
+
+        function changecolor() {
+
+            var hang = document.getElementsByTagName("tr"); //获取所有行，是个数组
+
+            for (var i = 1; i < hang.length; i++) { //从1开始是避掉标题行
+
+                hang[i].onmousemove = function () { //给每行添加鼠标监听事件
+
+                    this.classList.add("hang"); //css设置好的样式
+
+                }
+
+                hang[i].onmouseout = function () {
+
+                    this.classList.remove("hang");
+
+                }
+
+            }
+
+            // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+
+        }
+
+
+
+        // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+
+
+
+
+
+
+
+        function add() {
+
+            var message = prompt("请输入您的学号！", "xh"); //一个对话框，输入学号，输入框默认值是xh
+
+            var name = prompt("请输入您的姓名！"); //输入姓名的对话框
+
+
+
+            var tab = document.getElementById("table"); //获取表格元素
+
+            var tr1 = document.createElement("tr"); //新建一个行
+
+            var td1 = document.createElement("td"); //新建列1
+
+            var td2 = document.createElement("td"); //新建列2
+
+            var td3 = document.createElement("td"); //新建列3
+
+            var tda = document.createElement("a"); //新建列3里面的a标签
+
+
+
+            tab.appendChild(tr1); //把行添加到表格
+
+            tr1.appendChild(td1); //把列1添加到表格
+
+            tr1.appendChild(td2);
+
+            tr1.appendChild(td3);
+
+            td3.appendChild(tda); //把a标签添加到列3
+
+
+
+            td1.innerHTML = message; //把对话框获取的学号给列1
+
+            td2.innerHTML = name; //把姓名给列2
+
+            tda.innerHTML = "删除";
+
+            tda.href = "javascript:;";
+
+
+
+            changecolor(); //新加的一行同时调用改背景色和删除按钮的函数
+
+            deleteTable();
+
+
+
+
+
+        }
+
+
+
+        // 创建删除函数
+
+        function deleteTable() {
+
+            var del1 = document.getElementsByTagName("a"); //获取所有a标签
+
+
+
+            for (var i = 0; i < del1.length; i++) {
+
+                del1[i].onclick = function () { //每一个a标签添加点击事件
+
+                    this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); //这个a标签的父亲（td）的父亲（tr）的父亲（即table）.删除子对象（a的父亲的父亲即tr）
+
+                }
+
+            }
+
+
+
+        }
+
+
+
+    </script>
+
+</head>
+
+
+
+<body>
+
+    <table border="1" width="50%" id="table">
+
+        <tr>
+
+            <th>学号</th>
+
+            <th>姓名</th>
+
+            <th>操作</th>
+
+        </tr>
+
+
+
+        <tr>
+
+            <td>xh001</td>
+
+            <td>王小</td>
+
+            <td><a href="javascript:;">删除</a></td>
+
+            <!--在删除按钮上添加点击事件  -->
+
+        </tr>
+
+
+
+        <tr>
+
+            <td>xh002</td>
+
+            <td>刘小芳</td>
+
+            <td><a href="javascript:;">删除</a></td>
+
+            <!--在删除按钮上添加点击事件  -->
+
+        </tr>
+
+
+
+    </table>
+
+    <input type="button" value="添加一行" onclick="add()" />
+
+    <!--在添加按钮上添加点击事件  -->
+
+</body>
+
+<script type="text/javascript">
+
+
+
+
+
+</script>
+
+
+
+</html>
